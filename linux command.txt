@@ -1,1 +1,71 @@
 linux notebook
+AWS cloud command based
+unix is a file system
+pwd 路径
+cd / change to root 目录
+cd return to own home directory
+ls list file
+ll -ltr detail list
+mkdir make a folder
+clear just clear
+tab   有首字母auto-compelet
+vi text editor in cloudera
+vi myfile make a file name myfile
+:wq! save and quit
+:w! just save
+:q! quit without save
+cat myfile 显示myfile内容
+history 显示command history 有row id
+!1055 查出来的command 重新执行1055号命令
+ls -al 显示包含隐藏文件
+rwx read write excution 权限
+当系统文件时 root为最高权限permision unix系统文件的owner为root
+drwxrwxr-x xyz spark_batch 342342 Apr 4 2016 file1
+rwxrwxrwx第一行为owner 第二行为group owner 第三行为other user
+mv myfile myfile_rename 改file的name
+cd /var change directory to var
+sudo cat messages 执行系统文件
+sudo head var/log/messages 看头10行
+sudo tail messages 看尾10行 sudo is unnecessary for non system file
+sudo tail -n -100 var/log/messages 看尾100行
+sudo tail -f var/log/messages log realtime debuging or monitoring run 程序时产生log 开启这个 时时刻刻产生的log出现在这个界面上
+echo 下啥出啥
+echo 'Hello world' >> myfile_rename  write into myfile_rename 'hello world' append
+echo 'Hello world' > myfile_rename overwrite
+alias showlog='sudo tail -f /var/log/messages' 创建一个shortcut 以后输入showlog就执行‘’内的命令
+注意空格 很多东西加了空格就是错的
+如果不在 .bashrc 文件中 alias只能在当前session内用
+每次新开启一个session .bashrc都会被执行一遍 但是在云上不适用
+ls /etc >content.txt  显示etc下单文件目录 并把其存入到content.txt中
+cat content.txt | grep something you want 显示content.txt 并在里面找到something you want
+rm content.txt  remove content.txt
+chmod +x myscript 赋予myscript excution的权限
+./myscript 执行这个文件
+echo $PATH
+locate filename
+sudo updatedb
+find . -name 'cloudera*' .表示在本文件夹 *-->regular expression
+find /home/ -perm 777 找到文件夹中owner groupowner others都是rwx 权限的文件 755 5-->wr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

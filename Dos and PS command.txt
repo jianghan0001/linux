@@ -1,0 +1,28 @@
+DOS command(cmd)  powershell command
+md  		mkdir
+rd 		rmdir
+cd
+cd..
+dir		ls
+type NUL >abc.txt	new-item
+copy abc.txt def.txt     cp abc.txt def.txt
+move abc.txt C:\py\session\DOS_abc.txt	mv abc.txt C:\py\session\PS_abc.txt
+type def.txt	cat def.txt or more
+del def.txt		rm def.txt
+exit()		exit()
+		pwd print working directory
+		hostname my computer's network name
+		pushd push directory
+		popd pop directory
+		robocopy robust copy
+		mv move a file or directory
+		more page through a file
+		type print the whole file
+		forfile run a command on lots of tiles
+		dir-r find file
+		select-string find things inside files
+		help read a manual page
+		helpctr find what man page is appropriate
+		echo print some arguments
+		set export/set a new environment variable
+

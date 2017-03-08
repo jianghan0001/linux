@@ -5,7 +5,7 @@ pwd 路径
 cd / change to root 目录
 cd return to own home directory
 ls list file
-ll -ltr detail list
+ll -ltr(ll) detail list
 mkdir make a folder
 clear just clear
 tab   有首字母auto-compelet
@@ -46,16 +46,26 @@ locate filename
 sudo updatedb
 find . -name 'cloudera*' .表示在本文件夹 *-->regular expression
 find /home/ -perm 777 找到文件夹中owner groupowner others都是rwx 权限的文件 755 5-->wr
-
-
-
-
-
-
-
-
-
-
+cat my* 显示已my开头的文件内容
+cat my* | wc -l  查显示的文件中有多少行数据 useful for validation  from 3rd party datas
+'|'  means base on the front result perform the following command
+split -l 2 myscript  split file into 2 line per file will generate new files base on how many line you have
+diff xaa xab  compare two file difference 
+cat * > test2 redirect output to a new file
+asdad 2>>/dev/null redirect to nowhere 2 means standard error messages use when you do not care the result,whatever pass or not
+cat xdf xaa xab > all.txt 2>&1 do not show error message but append it to all.txt
+ps aux  list all running process
+ps aux | grep spark   whether a sparl process is running 
+ls /etc | sort -f > sort.txt sort from a-z -f means case insensitive
+cat hello.txt | grep hello  find all sentenses include 'hello'
+cat hello.txt | grep ^hello find start with hello
+cat hello.txt | grep hello$ find end with hello
+cat hello.txt | grep [he] find all with h or e try[a-z] [0-9]
+cat hello.txt | grep -c hello  count with hello
+fgrep find what you exactly entered
+egrep -i 'hello|world' hello.txt e-extend regular expression -i case insensitive 'hello|world' there is hello or world
+egrep -v 'hello|world' hello.txt print everything which do not have 'hello|world' case sensitive
+egrep -i 'hello|world' hello.txt | grep -v 'jef' add more condition
 
 
 

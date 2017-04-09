@@ -67,11 +67,106 @@ egrep -i 'hello|world' hello.txt e-extend regular expression -i case insensitive
 egrep -v 'hello|world' hello.txt print everything which do not have 'hello|world' case sensitive
 egrep -i 'hello|world' hello.txt | grep -v 'jef' add more condition
 
+[cloudera@quickstart ~]$ vim team #创建team文件 内容如下
+[cloudera@quickstart ~]$ cat team #显示team文件内容
+jeff fulltime 5000
+john parttime 3000
+mary fulltime 6000
+roni parttime 2000
+[cloudera@quickstart ~]$ awk '/jeff/' team #找出有jeff的行
+jeff fulltime 5000
+[cloudera@quickstart ~]$ awk '/jeff/ {print $2:}' team
+awk: /jeff/ {print $2:}
+awk:                 ^ syntax error #要分号
+[cloudera@quickstart ~]$ awk '/jeff/ {print $2;}' team #jeff行的第二项
+fulltime
+[cloudera@quickstart ~]$ awk '/jeff/ {print $2 "    " $3;}' team
+fulltime    5000 #第二项和第三项
+[cloudera@quickstart ~]$ awk '/jeff/ {print $0;}' team
+jeff fulltime 5000 #0为整行
+[cloudera@quickstart ~]$ awk '{print NF}' team #显示每行有几项 默认空格为delimiter
+3
+3
+3
+3
+[cloudera@quickstart ~]$ awk '{print NF}' team | uniq #显示特异项
+3
+[cloudera@quickstart ~]$ awk '$1 ~/jeff/ {if($3>=3000) print "Congrates",$1,"for winning";}' team #如果jeff的工资大于3000打印congrats jeff for winning
+Congrates jeff for winning #a regular expression
 
+awk -F '\t' 告诉他啥是delimiter
 
-
-
-
+[cloudera@quickstart ~]$ vim team
+[cloudera@quickstart ~]$ awk 'NR!=1 {print $1 "  "$2}' team
+jeff  fulltime
+john  parttime
+mary  fulltime
+roni  parttime
+[cloudera@quickstart ~]$ awk ' {print $1 "  "$2}' team
+name  job
+jeff  fulltime
+john  parttime
+mary  fulltime
+roni  parttime
+[cloudera@quickstart ~]$  #NR!=1 可以去掉头文件 number of the row
+[cloudera@quickstart ~]$ awk  '!/jeff/{ print $0}' team
+name job salary
+john parttime 3000
+mary fulltime 6000
+roni parttime 2000
+[cloudera@quickstart ~]$  #!表示不等于 '这里面是action（print啥的）'
+[cloudera@quickstart ~]$ cat team
+name job salary
+jeff fulltime 5000
+john parttime 3000
+mary fulltime 6000
+roni parttime 2000
+[cloudera@quickstart ~]$ sed 's/parttime/promotion/' team #找到parttime 改成promotion 但是源文件不被改动
+name job salary
+jeff fulltime 5000
+john promotion 3000
+mary fulltime 6000
+roni promotion 2000
+[cloudera@quickstart ~]$ sed 's/parttime/promotion/' team > promotion.txt #可以将该过的内容存到一个新的文件中
+[cloudera@quickstart ~]$ cat promotion.txt 
+name job salary
+jeff fulltime 5000
+john promotion 3000
+mary fulltime 6000
+roni promotion 2000
+[cloudera@quickstart ~]$ sed '0,/parttime/s/parttime/promotion/' team #找到第一个出现的parttime换成promotion
+name job salary
+jeff fulltime 5000
+john promotion 3000
+mary fulltime 6000
+roni parttime 2000
+[cloudera@quickstart ~]$ sed 's/<[^>]*>//' team#找到有<>的地方 替换成空格
+name job salary
+jeff fulltime 5000
+john parttime 3000
+mary fulltime 6000
+roni parttime 2000
+[cloudera@quickstart ~]$ cut -f1 -d: myfile.txt  # 显示第一列 delimiter是: from myfile
+[cloudera@quickstart ~]$ cut --help #显示cut的syntax
+[cloudera@quickstart ~]$ cut -c3-8 myfile.txt  #显示3-8个charactor
+[cloudera@quickstart ~]$ sed '/root/s/linuxroot/' myfile.txt #替换root为linuxroot
+[cloudera@quickstart ~]$ sed '/root/s/linuxroot/g' myfile.txt #加个g表示global
+#进入文件后 :/cloudera 找出文件内的所有cloudera的字
+cat myfile.txt | grep [5-9] 找内容中有5-9的行 [A-Z]找有大写A-Z的 [^A-Z]没有大写
+[cloudera@quickstart ~]$ curl -s google.com |egrep -ci "interal server error" > /dev/null && mail -s "internal error" @01training@outlook.com
+# 有错误 把error message 发到email
+[cloudera@quickstart ~]$ date +%Y-%m-%d-%H:%M:%S
+2017-04-08-21:23:43
+*.* means all file
+grep -l cloudera *.* #找出所有含有cloudera字样的文件
+vim 后编辑文件 
+dd 删除一行 
+x 删除一个字母
+2dd删除2行 --ndd删掉n行
+/查找内容:   查找后用n/N换行 n-->forward
+#recording
+script result.log #开始记录
+exit 退出保存
 
 
 
